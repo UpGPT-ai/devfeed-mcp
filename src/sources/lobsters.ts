@@ -72,7 +72,21 @@ export async function getByTag(tag: string, page = 1): Promise<LobstersStory[]> 
 }
 
 export async function search(query: string): Promise<LobstersStory[]> {
-  return fetchJSON<LobstersStory[]>(
-    `${BASE}/search.json?q=${encodeURIComponent(query)}&what=stories`
+  // Lobsters has no public search API.
+  // Fall back to fetching hottest + newest and filtering client-side.
+  const [hot, newest] = await Promise.all([getHottest(), getNewest()]);
+  const all = [...hot, ...newest];
+  const seen = new Set<string>();
+  const deduped = all.filter((s) => {
+    if (seen.has(s.short_id)) return false;
+    seen.add(s.short_id);
+    return true;
+  });
+  const lower = query.toLowerCase();
+  return deduped.filter(
+    (s) =>
+      s.title.toLowerCase().includes(lower) ||
+      s.tags.some((t) => t.toLowerCase().includes(lower)) ||
+      s.description.toLowerCase().includes(lower)
   );
 }

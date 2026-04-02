@@ -84,10 +84,27 @@ export async function searchArticles(
   page = 1,
   perPage = 25
 ): Promise<DevtoArticle[]> {
-  // Dev.to search is tag-based for the public API; use general listing with filtering
-  return fetchJSON<DevtoArticle[]>(
-    `${BASE}/articles?page=${page}&per_page=${perPage}&tag=${encodeURIComponent(query)}`
+  // Dev.to public API doesn't have full-text search.
+  // Try tag-based first (single word), then fall back to fetching top articles and filtering.
+  const tag = query.replace(/\s+/g, "").toLowerCase();
+  try {
+    const tagResults = await fetchJSON<DevtoArticle[]>(
+      `${BASE}/articles?page=${page}&per_page=${perPage}&tag=${encodeURIComponent(tag)}`
+    );
+    if (tagResults.length > 0) return tagResults;
+  } catch {}
+
+  // Fallback: fetch top articles and filter client-side
+  const articles = await fetchJSON<DevtoArticle[]>(
+    `${BASE}/articles?page=${page}&per_page=100`
   );
+  const lower = query.toLowerCase();
+  return articles.filter(
+    (a) =>
+      a.title.toLowerCase().includes(lower) ||
+      a.description.toLowerCase().includes(lower) ||
+      a.tag_list.some((t) => t.toLowerCase().includes(lower))
+  ).slice(0, perPage);
 }
 
 export async function getArticlesByTag(
