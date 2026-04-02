@@ -55,7 +55,7 @@ HN has no notifications. This is the most-requested feature in HN history.
 ```
 > Check my HN replies
 
-2 new replies for gbibas:
+2 new replies for your-username:
 
 [simonw | 2h ago] on your comment about agent sandboxing:
   "Interesting approach with the worktrees..."
@@ -214,4 +214,4 @@ MIT
 
 ---
 
-Built by [Greg Bibas](https://upgpt.ai)
+Built by [UpGPT.ai](https://upgpt.ai)

@@ -1,9 +1,9 @@
 {
   "name": "devfeed-mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Personalized dev community reader for AI assistants — Hacker News, Lobsters, Reddit, and Dev.to via MCP",
   "author": {
-    "name": "Greg Bibas",
+    "name": "UpGPT",
     "url": "https://upgpt.ai"
   },
   "license": "MIT",
