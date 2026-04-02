@@ -1,0 +1,52 @@
+{
+  "name": "hn-mcp",
+  "version": "1.0.0",
+  "description": "Personalized Hacker News reader for AI assistants — notifications, digests, thread summaries, and Who is Hiring filtering via MCP",
+  "author": {
+    "name": "Greg Bibas",
+    "url": "https://upgpt.ai"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/upgpt-ai/hn-mcp",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/upgpt-ai/hn-mcp.git"
+  },
+  "keywords": [
+    "mcp",
+    "hacker-news",
+    "hn",
+    "ai",
+    "claude",
+    "notifications",
+    "digest",
+    "who-is-hiring"
+  ],
+  "type": "module",
+  "bin": {
+    "hn-mcp": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/index.js",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "yaml": "^2.7.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

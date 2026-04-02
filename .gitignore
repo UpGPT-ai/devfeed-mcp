@@ -1,0 +1,6 @@
+node_modules/
+dist/
+*.js.map
+
+# Private karma gaming tools — never commit
+private/
