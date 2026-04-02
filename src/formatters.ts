@@ -2,7 +2,7 @@
  * Text formatters for presenting HN data in MCP tool responses.
  */
 
-import type { HNItem, HNUser, CommentNode } from "./hn-api.js";
+import type { HNItem, HNUser, CommentNode } from "./sources/hackernews.js";
 
 export function timeAgo(unixSeconds: number): string {
   const diff = Math.floor(Date.now() / 1000) - unixSeconds;

@@ -1,30 +1,33 @@
 {
-  "name": "hn-mcp",
+  "name": "devfeed-mcp",
   "version": "1.0.0",
-  "description": "Personalized Hacker News reader for AI assistants — notifications, digests, thread summaries, and Who is Hiring filtering via MCP",
+  "description": "Personalized dev community reader for AI assistants — Hacker News, Lobsters, Reddit, and Dev.to via MCP",
   "author": {
     "name": "Greg Bibas",
     "url": "https://upgpt.ai"
   },
   "license": "MIT",
-  "homepage": "https://github.com/upgpt-ai/hn-mcp",
+  "homepage": "https://github.com/upgpt-ai/devfeed-mcp",
   "repository": {
     "type": "git",
-    "url": "https://github.com/upgpt-ai/hn-mcp.git"
+    "url": "https://github.com/upgpt-ai/devfeed-mcp.git"
   },
   "keywords": [
     "mcp",
     "hacker-news",
-    "hn",
+    "lobsters",
+    "reddit",
+    "devto",
     "ai",
     "claude",
-    "notifications",
+    "rss",
+    "reader",
     "digest",
-    "who-is-hiring"
+    "notifications"
   ],
   "type": "module",
   "bin": {
-    "hn-mcp": "./dist/index.js"
+    "devfeed-mcp": "./dist/index.js"
   },
   "main": "./dist/index.js",
   "files": [

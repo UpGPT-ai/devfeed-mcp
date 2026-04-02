@@ -1,17 +1,15 @@
-# hn-mcp
+# devfeed-mcp
 
-**An AI-powered reader for Hacker News.** Like an RSS reader, but for HN — and your AI assistant does the reading for you.
+**A personalized dev community reader for AI assistants.** Like RSS, but for Hacker News, Lobsters, Reddit, and Dev.to — and your AI does the reading for you.
 
-HN hasn't changed in 18 years. No notifications. No way to follow threads. No digest. No way to filter the monthly "Who is hiring?" thread without Ctrl+F.
-
-This MCP server wraps the [official HN API](https://github.com/HackerNews/API) and [Algolia Search](https://hn.algolia.com/) so your AI assistant (Claude, Cursor, Windsurf, etc.) can help you keep up with the conversations that matter to you.
+Define your interests once, then ask your AI assistant what's happening across all your communities in a single conversation.
 
 ## Quick Start
 
 ### Claude Code / Claude Desktop
 
 ```bash
-claude mcp add hn-mcp -- npx hn-mcp
+claude mcp add devfeed-mcp -- npx devfeed-mcp
 ```
 
 ### Manual (any MCP client)
@@ -19,65 +17,79 @@ claude mcp add hn-mcp -- npx hn-mcp
 ```json
 {
   "mcpServers": {
-    "hn-mcp": {
+    "devfeed-mcp": {
       "command": "npx",
-      "args": ["hn-mcp"]
+      "args": ["devfeed-mcp"]
     }
   }
 }
 ```
 
-That's it. No API keys, no accounts, no config required.
+No API keys. No accounts. No config required to start.
 
 ## What Can It Do?
 
-### Reply Notifications
+### Unified Digest Across All Sources
 
-HN has no notifications. This is the most-requested feature in HN history. Now you have it.
+```
+> What's interesting in my dev communities today?
+
+## Hacker News
+- **Claude Code Unpacked** (994 pts, 353 comments) [ai-agents, mcp]
+- **Axios compromised on NPM** (1900 pts, 780 comments) [supply-chain-security]
+
+## Lobsters
+- Rust 2026 Edition stabilized (42 pts, 18 comments) [rust, programming]
+
+## Reddit
+- Show: I built an MCP server for... (342 pts, 89 comments, r/ClaudeAI) [MCP server]
+
+## Dev.to
+- Building AI Agents with TypeScript (156 reactions, 23 comments) [ai, typescript]
+```
+
+### HN Reply Notifications
+
+HN has no notifications. This is the most-requested feature in HN history.
 
 ```
 > Check my HN replies
 
 2 new replies for gbibas:
 
-[sebmellen | 2h ago] on your comment about agent sandboxing:
+[simonw | 2h ago] on your comment about agent sandboxing:
   "Interesting approach with the worktrees..."
-  https://news.ycombinator.com/item?id=12345
-
-[dandaka | 1h ago] on your comment about MCP vs CLI:
-  "Good point about discovery..."
-  https://news.ycombinator.com/item?id=12346
-```
-
-### Personalized Digest
-
-Define your interests in `~/.hn-profile.yaml` and get a curated feed instead of scanning 60 stories.
-
-```
-> What's on HN for me today?
-
-Matching Your Interests (4 stories):
-- Claude Code Unpacked (994 pts, 353 comments) [ai-agents, mcp]
-- Axios compromised on NPM (1900 pts, 780 comments) [supply-chain-security]
-- Show HN: Zerobox – Sandbox any command (63 pts, 66 comments) [developer-tools]
-
-Activity from People You Follow:
-- tptacek commented on "Axios compromised" (3 comments)
 ```
 
 ### Who is Hiring? Filter
 
-The monthly hiring thread has 500+ comments. Stop Ctrl+F'ing.
+The monthly HN hiring thread has 500+ comments. Stop Ctrl+F'ing.
 
 ```
-> Search Who is Hiring for remote TypeScript AI
+> Search Who is Hiring for remote TypeScript
 
-Found 12 postings matching "remote TypeScript AI":
+Found 12 postings matching "remote TypeScript":
 
----
-Acme Corp | Remote (US) | Senior Full-Stack Engineer | TypeScript, React, AI/ML
+Acme Corp | Remote (US) | Senior Full-Stack Engineer | TypeScript, React
 We're building AI-powered developer tools...
-https://news.ycombinator.com/item?id=12347
+```
+
+### Cross-Platform Search
+
+```
+> Search all communities for "MCP server"
+
+## Hacker News
+- Show HN: Real-time dashboard for Claude Code agent teams (55 pts)
+
+## Lobsters
+- MCP protocol deep dive (28 pts, 12 comments)
+
+## Reddit
+- Anyone using MCP servers in production? (89 pts, r/ClaudeAI)
+
+## Dev.to
+- How to Build Your First MCP Server (42 reactions)
 ```
 
 ### Thread Intelligence
@@ -90,84 +102,111 @@ Understand a 300-comment thread before diving in.
 "Claude Code Unpacked" — 994 pts, 353 comments
 
 Most Discussed Comments (by reply count):
-- [amangsingh] (15 replies): "500K LOC proves LLMs struggle with determinism..."
-- [troupo] (12 replies): "A TUI wrapper should need 20-50K LOC max..."
-
-Most Active Participants:
-- amangsingh (3 top-level comments)
-- troupo (2 top-level comments)
+- [amangsingh] (15 replies): "500K LOC proves LLMs struggle..."
+- [troupo] (12 replies): "A TUI wrapper should need 20-50K LOC..."
 ```
 
-### Everything Else
+## All Tools
 
+### Unified (cross-platform)
 | Tool | What It Does |
 |------|-------------|
-| `hn_replies` | Check for replies to your comments |
-| `hn_digest` | Stories matching your interests + followed users' activity |
-| `hn_who_is_hiring` | Search the monthly hiring thread by keyword |
-| `hn_thread` | Full comment tree for any story |
-| `hn_thread_summary` | Key participants and most-discussed comments |
-| `hn_thread_search` | Search within a specific thread |
-| `hn_watch` | Track threads for new comments |
-| `hn_follow_activity` | Recent activity from users you follow |
-| `hn_top` | Current top stories |
-| `hn_ask` | Current Ask HN stories |
-| `hn_show` | Current Show HN stories |
-| `hn_story` | Get a single story's details |
-| `hn_user` | Look up a user's public profile |
-| `hn_my_activity` | Your recent comments and submissions |
-| `hn_search` | Search stories or comments via Algolia |
+| `feed_digest` | Personalized digest across all sources |
+| `feed_search` | Search all platforms at once |
+
+### Hacker News
+| Tool | What It Does |
+|------|-------------|
+| `hn_replies` | Reply notifications (the missing feature) |
+| `hn_top` / `hn_ask` / `hn_show` | Story listings |
+| `hn_thread` | Full comment tree |
+| `hn_thread_summary` | Key participants and debates |
+| `hn_thread_search` | Search within a thread |
+| `hn_who_is_hiring` | Filter the hiring thread |
+| `hn_my_activity` | Your recent comments/submissions |
+| `hn_user` | User profile lookup |
+| `hn_story` | Story details |
+| `hn_search` | Search via Algolia |
+
+### Lobsters
+| Tool | What It Does |
+|------|-------------|
+| `lobsters_hot` / `lobsters_newest` | Story listings |
+| `lobsters_thread` | Story comments |
+| `lobsters_tag` | Stories by tag |
+
+### Reddit
+| Tool | What It Does |
+|------|-------------|
+| `reddit_subreddit` | Posts from any subreddit |
+| `reddit_thread` | Post + comments |
+| `reddit_search` | Search posts |
+
+### Dev.to
+| Tool | What It Does |
+|------|-------------|
+| `devto_top` / `devto_latest` | Article listings |
+| `devto_tag` | Articles by tag |
+| `devto_thread` | Article + comments |
 
 ## Personalization
 
-Create `~/.hn-profile.yaml` to personalize your experience:
+Create `~/.devfeed.yaml` to personalize your experience:
 
 ```yaml
-# Your HN username (used for replies and activity)
-username: your-hn-username
+# Platform usernames
+hackernews: your-hn-username
+reddit: your-reddit-username
 
-# Topics you care about
+# Topics (matched across all sources)
 topics:
   - ai-agents
   - developer-tools
   - open-source
-  - saas
-  - startup-bootstrapping
 
-# Specific keywords to match
+# Keywords to match in titles
 keywords:
   - "Claude Code"
   - "MCP server"
-  - "Chrome extension"
   - TypeScript
-  - Supabase
 
-# Users whose comments you want to follow
-follow:
+# HN users to follow
+hn_follow:
   - tptacek
   - patio11
-  - dang
 
-# Threads you're watching (add via hn_watch tool)
-watching: []
+# Reddit subreddits for your digest
+subreddits:
+  - programming
+  - ClaudeAI
+  - LocalLLaMA
+
+# Dev.to tags
+devto_tags:
+  - ai
+  - typescript
 ```
 
-All data is stored locally in `~/.hn-mcp/`. No server, no telemetry, no account required.
+See [example.devfeed.yaml](example.devfeed.yaml) for a full example.
+
+All data stored locally in `~/.devfeed/`. No server, no telemetry.
 
 ## Why This Exists
 
-I've had an HN account since 2011. In that time, the reading experience hasn't changed. I wanted to actually engage in conversations without spending an hour scanning threads and manually refreshing `/threads` to check for replies.
+I've had accounts on these platforms for years. The reading experience across all of them is fragmented — different UIs, no unified notifications, no way to filter by what I actually care about.
 
-This gives my AI assistant read access to HN so I can focus on the conversations, not on finding them.
+This gives my AI assistant read access to all my dev communities so I can stay on top of conversations without context-switching between four browser tabs.
 
 ## Tech
 
-- TypeScript, ~600 lines
-- [HN Firebase API](https://github.com/HackerNews/API) (no auth, no rate limits)
-- [Algolia HN Search](https://hn.algolia.com/api) for full-text search
+- TypeScript
+- [HN Firebase API](https://github.com/HackerNews/API) + [Algolia Search](https://hn.algolia.com/api)
+- [Lobsters JSON API](https://lobste.rs)
+- [Reddit Public JSON API](https://www.reddit.com/dev/api/)
+- [Dev.to Forem API](https://developers.forem.com/api/v1)
 - [MCP SDK](https://github.com/modelcontextprotocol/typescript-sdk)
-- Zero config to start, `~/.hn-profile.yaml` for personalization
-- All state stored locally in `~/.hn-mcp/`
+- Zero external auth required
+- All state stored locally
 
 ## License
 

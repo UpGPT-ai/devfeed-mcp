@@ -1,0 +1,49 @@
+# ~/.devfeed.yaml — Your dev community interests file
+# Copy to ~/.devfeed.yaml and customize.
+
+# Platform usernames (for reply notifications and activity)
+hackernews: your-hn-username
+lobsters: your-lobsters-username
+reddit: your-reddit-username
+devto: your-devto-username
+
+# Topics you care about (matched across all sources)
+topics:
+  - ai-agents
+  - developer-tools
+  - open-source
+  - saas
+  - startup-bootstrapping
+  - chrome-extensions
+  - supply-chain-security
+
+# Specific keywords to match in titles and descriptions
+keywords:
+  - "Claude Code"
+  - "MCP server"
+  - "vibe coding"
+  - TypeScript
+  - Supabase
+  - WordPress
+
+# HN users whose comments you want to follow
+hn_follow:
+  - tptacek
+  - patio11
+  - dang
+
+# Reddit subreddits to include in your digest
+subreddits:
+  - programming
+  - webdev
+  - machinelearning
+  - ClaudeAI
+  - LocalLLaMA
+  - SideProject
+
+# Dev.to tags to follow
+devto_tags:
+  - ai
+  - typescript
+  - webdev
+  - opensource
